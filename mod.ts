@@ -37,6 +37,13 @@ export const romanNumerals = [
   new RomanNumeral(1, "I"),
 ] as const;
 
+/**
+ * Convers a number to a Roman Numeral.
+ *
+ * @param number - The number to convert
+ *
+ * @returns The Roman Numeral
+ */
 export function roman(number: number): string {
   assertNumberInRomanLimits(number);
 
@@ -60,8 +67,6 @@ export function roman(number: number): string {
  * @throws {@link RangeError}
  *
  * Thrown if the number is greater than 3999 or less than 1.
- *
- * @public
  */
 export function assertNumberInRomanLimits(number: number) {
   if (number > 3999) {
@@ -70,7 +75,7 @@ export function assertNumberInRomanLimits(number: number) {
     );
   }
 
-  if (1 > number) {
+  if (number < 1) {
     throw new RangeError(
       "There is no concept of 0 or negatives in Roman numerals.",
     );
