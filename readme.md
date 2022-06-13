@@ -39,6 +39,8 @@ Eg 👉
 [Script Tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script)
 ↔️ [JSDelivr](https://cdn.jsdelivr.net/npm/@ultirequiem/roman)
 
+It includes other helper methods, check the docs.
+
 ## Documentation
 
 Is hosted on [Deno Doc](https://doc.deno.land/https://deno.land/x/roman/mod.ts)
