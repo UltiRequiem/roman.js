@@ -3,7 +3,7 @@
 [![Code Coverage](https://codecov.io/gh/UltiRequiem/roman.js/branch/main/graph/badge.svg)](https://codecov.io/gh/UltiRequiem/roman.js)
 [![Deno Doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/roman/mod.ts)
 
-Parse a number to a Roman Numeral.
+Convert Numbers to Roman numerals.
 
 ## Usage
 
