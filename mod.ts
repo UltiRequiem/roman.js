@@ -9,7 +9,7 @@ export const romanNumerals = [
   new RomanNumeral(400, "CD"),
   new RomanNumeral(100, "C"),
   new RomanNumeral(90, "XC"),
-  new RomanNumeral(90, "L"),
+  new RomanNumeral(50, "L"),
   new RomanNumeral(40, "XL"),
   new RomanNumeral(10, "X"),
   new RomanNumeral(9, "IX"),
@@ -19,6 +19,8 @@ export const romanNumerals = [
 ];
 
 export function roman(number: number): string {
+  assertNumberInRomanLimits(number);
+
   let result = "";
 
   for (const { value, symbol } of romanNumerals) {
@@ -31,4 +33,16 @@ export function roman(number: number): string {
   return result;
 }
 
-console.log(roman(34));
+export function assertNumberInRomanLimits(number: number) {
+  if (number > 3999) {
+    throw new RangeError(
+      "The biggest number we can form in Roman numerals is MMMCMXCIX (3999).",
+    );
+  }
+
+  if (number <= 0) {
+    throw new RangeError(
+      "There is no concept of 0 or negatives in Roman numerals.",
+    );
+  }
+}
