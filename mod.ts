@@ -60,6 +60,34 @@ export function roman(number: number): string {
 }
 
 /**
+ * Convers a Roman Numeral to number.
+ *
+ * @param romanNumeral - The Roman numeral to parse.
+ *
+ * @returns The number that is being represented by the Roman Numeral.
+ */
+export function parseRoman(romanNumeral: string): number {
+  let result = 0;
+
+  for (const { value, symbol } of romanNumerals) {
+    let counter = 0;
+
+    while (romanNumeral.startsWith(symbol)) {
+      if (counter > 2) {
+        throw new SyntaxError("Roman numeral is invalid.");
+      }
+
+      romanNumeral = romanNumeral.slice(symbol.length);
+      result += value;
+
+      counter++;
+    }
+  }
+
+  return result;
+}
+
+/**
  * Asserts a number can be represented in Roman numerals.
  *
  * @param number - The number to confirm is capable of being represented in Roman numerals
@@ -68,7 +96,7 @@ export function roman(number: number): string {
  *
  * Thrown if the number is greater than 3999 or less than 1.
  */
-export function assertNumberInRomanLimits(number: number) {
+export function assertNumberInRomanLimits(number: number): asserts number {
   if (number > 3999) {
     throw new RangeError(
       "The biggest number we can form in Roman numerals is MMMCMXCIX (3999).",

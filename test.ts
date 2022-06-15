@@ -1,4 +1,4 @@
-import { roman } from "./mod.ts";
+import { parseRoman, roman } from "./mod.ts";
 import {
   assertEquals,
   assertThrows,
@@ -18,10 +18,18 @@ const cases = [
   [3999, "MMMCMXCIX"],
 ] as const;
 
-Deno.test("Convert to Roman from Number.", async (t) => {
+Deno.test("Convert to Roman Numeral from number.", async (t) => {
   for (const [number, numeral] of cases) {
     await t.step(`${number} converts to ${numeral}.`, () => {
       assertEquals(roman(number), numeral);
+    });
+  }
+});
+
+Deno.test("Convert to number from Roman Numeral.", async (t) => {
+  for (const [number, numeral] of cases) {
+    await t.step(`${numeral} converts to ${number}.`, () => {
+      assertEquals(parseRoman(numeral), number);
     });
   }
 });
