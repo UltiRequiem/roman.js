@@ -27,7 +27,7 @@ parseRoman("MCMLXXXIV"); //=> 1984
 ### [Node.js 🐢🚀](https://npmjs.com/package/@ultirequiem/roman)
 
 ```javascript
-import { roman } from "@ultirequiem/roman";
+import { parseRoman, roman } from "@ultirequiem/roman";
 ```
 
 ### [Browser 🌐](https://developer.mozilla.org/en-US/docs/Glossary/Browser)
