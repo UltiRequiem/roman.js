@@ -24,17 +24,7 @@ Deno.test("Convert to Roman Numeral from number.", async (t) => {
       assertEquals(roman(number), numeral);
     });
   }
-});
 
-Deno.test("Convert to number from Roman Numeral.", async (t) => {
-  for (const [number, numeral] of cases) {
-    await t.step(`${numeral} converts to ${number}.`, () => {
-      assertEquals(parseRoman(numeral), number);
-    });
-  }
-});
-
-Deno.test("Errors", async (t) => {
   await t.step("Number lower than 1 throws.", () => {
     assertThrows(() => {
       roman(0);
@@ -49,5 +39,19 @@ Deno.test("Errors", async (t) => {
     assertThrows(() => {
       roman(4000);
     }, RangeError);
+  });
+});
+
+Deno.test("Convert from number to Roman Numeral.", async (t) => {
+  for (const [number, numeral] of cases) {
+    await t.step(`${numeral} converts to ${number}.`, () => {
+      assertEquals(parseRoman(numeral), number);
+    });
+  }
+
+  await t.step("Invalid Roman Numeral throws.", () => {
+    assertThrows(() => {
+      parseRoman("XXXX");
+    }, SyntaxError);
   });
 });
