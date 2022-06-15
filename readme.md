@@ -12,15 +12,16 @@ The API is the same on all this platforms ✔️
 ### [Deno 🦕](https://deno.land/x/roman)
 
 ```javascript
-import { roman } from "https://deno.land/x/roman/mod.ts";
+import { parseRoman, roman } from "https://deno.land/x/roman/mod.ts";
 
 roman(3); //=> "III"
+parseRoman("III"); //=> 3
 
 roman(47); //=> "XLVII"
-
-roman(3990); //=> "MMMCMXC"
+parseRoman("XLVII"); //=> 47
 
 roman(1984); //=> "MCMLXXXIV"
+parseRoman("MCMLXXXIV"); //=> 1984
 ```
 
 ### [Node.js 🐢🚀](https://npmjs.com/package/@ultirequiem/roman)
