@@ -1,4 +1,4 @@
-import { Command } from "https://deno.land/x/cliffy@v0.24.3/command/mod.ts";
+import { Command } from "https://deno.land/x/cliffy@v0.25.2/command/mod.ts";
 import { roman } from "./mod.ts";
 
 const romanCli = new Command()
