@@ -2,7 +2,7 @@ import { parseRoman, roman } from "./mod.ts";
 import {
   assertEquals,
   assertThrows,
-} from "https://deno.land/std@0.161.0/testing/asserts.ts";
+} from "https://deno.land/std@0.166.0/testing/asserts.ts";
 
 const cases = [
   [1, "I"],
