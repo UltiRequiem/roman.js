@@ -1,7 +1,7 @@
 {
   "name": "@ultirequiem/roman",
   "version": "0.0.0-development",
-  "description": "Convert numbers to Roman numerals",
+  "description": "Convert numbers to Roman numerals and back.",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -19,7 +19,10 @@
   },
   "keywords": [
     "roman",
-    "number"
+    "numerals",
+    "converter",
+    "esm",
+    "typescript"
   ],
   "license": "MIT",
   "homepage": "https://ulti.js.org/roman.js",
