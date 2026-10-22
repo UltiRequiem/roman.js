@@ -1,6 +1,6 @@
 # Roman
 
-Convert Numbers to Roman numerals.
+Convert numbers to Roman numerals and back.
 
 [![npm](https://img.shields.io/npm/v/@ultirequiem/roman?logo=npm&color=cb3837)](https://www.npmjs.com/package/@ultirequiem/roman)
 [![npm downloads](https://img.shields.io/npm/dm/@ultirequiem/roman?color=cb3837)](https://www.npmjs.com/package/@ultirequiem/roman)
