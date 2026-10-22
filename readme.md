@@ -15,7 +15,7 @@ npm install @ultirequiem/roman
 
 ## Usage
 
-ESM only: the same import works in Node.js, Bun and browsers.
+ESM only, types included: the same import works in Node.js, Bun and browsers.
 
 ```javascript
 import { parseRoman, roman } from "@ultirequiem/roman";
@@ -29,10 +29,6 @@ parseRoman("XLVII"); //=> 47
 roman(1984); //=> "MCMLXXXIV"
 parseRoman("MCMLXXXIV"); //=> 1984
 ```
-
-## Documentation
-
-Types are included with the package.
 
 ## Support
 
