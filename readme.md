@@ -15,9 +15,7 @@ npm install @ultirequiem/roman
 
 ## Usage
 
-The API is the same on all these platforms ✔️
-
-### [Node.js 🐢🚀](https://npmjs.com/package/@ultirequiem/roman)
+ESM only: the same import works in Node.js, Bun and browsers.
 
 ```javascript
 import { parseRoman, roman } from "@ultirequiem/roman";
@@ -31,18 +29,6 @@ parseRoman("XLVII"); //=> 47
 roman(1984); //=> "MCMLXXXIV"
 parseRoman("MCMLXXXIV"); //=> 1984
 ```
-
-### [Browser 🌐](https://developer.mozilla.org/en-US/docs/Glossary/Browser)
-
-You can use any [CDN](https://en.wikipedia.org/wiki/Content_delivery_network) 🔥
-
-Eg 👉
-[ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) ↔️
-[SkyPack](https://cdn.skypack.dev/@ultirequiem/roman) 🆚
-[Script Tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script)
-↔️ [JSDelivr](https://cdn.jsdelivr.net/npm/@ultirequiem/roman)
-
-It includes other helper methods, check the docs.
 
 ## Documentation
 
