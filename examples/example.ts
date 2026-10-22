@@ -1,4 +1,4 @@
-import { parseRoman, roman } from "./mod.ts";
+import { parseRoman, roman } from "../src/index.js";
 
 console.log(roman(3)); //=> "III"
 

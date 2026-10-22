@@ -18,7 +18,10 @@
  * Represents a Roman Numeral
  */
 export class RomanNumeral {
-  constructor(public value: number, public symbol: string) {}
+  constructor(
+    public value: number,
+    public symbol: string,
+  ) {}
 }
 
 export const romanNumerals = [
