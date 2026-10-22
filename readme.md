@@ -1,18 +1,23 @@
 # Roman
 
 [![Code Coverage](https://codecov.io/gh/UltiRequiem/roman.js/branch/main/graph/badge.svg)](https://codecov.io/gh/UltiRequiem/roman.js)
-[![Deno Doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/roman/mod.ts)
 
 Convert Numbers to Roman numerals.
+
+## Install
+
+```sh
+npm install @ultirequiem/roman
+```
 
 ## Usage
 
 The API is the same on all this platforms ✔️
 
-### [Deno 🦕](https://deno.land/x/roman)
+### [Node.js 🐢🚀](https://npmjs.com/package/@ultirequiem/roman)
 
 ```javascript
-import { parseRoman, roman } from "https://deno.land/x/roman/mod.ts";
+import { parseRoman, roman } from "@ultirequiem/roman";
 
 roman(3); //=> "III"
 parseRoman("III"); //=> 3
@@ -22,12 +27,6 @@ parseRoman("XLVII"); //=> 47
 
 roman(1984); //=> "MCMLXXXIV"
 parseRoman("MCMLXXXIV"); //=> 1984
-```
-
-### [Node.js 🐢🚀](https://npmjs.com/package/@ultirequiem/roman)
-
-```javascript
-import { parseRoman, roman } from "@ultirequiem/roman";
 ```
 
 ### [Browser 🌐](https://developer.mozilla.org/en-US/docs/Glossary/Browser)
@@ -44,8 +43,7 @@ It includes other helper methods, check the docs.
 
 ## Documentation
 
-Is hosted on [Deno Doc](https://doc.deno.land/https://deno.land/x/roman/mod.ts)
-📄
+Types are included with the package.
 
 ## Support
 
@@ -53,9 +51,6 @@ Open an Issue, I will check it a soon as possible 👀
 
 If you want to hurry me up a bit
 [send me a tweet](https://twitter.com/UltiRequiem) 😆
-
-Consider [supporting me on Patreon](https://patreon.com/UltiRequiem) if you like
-my work 🙏
 
 Don't forget to star the repo ⭐
 
