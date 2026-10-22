@@ -1,11 +1,11 @@
 # Roman
 
+Convert Numbers to Roman numerals.
+
 [![npm](https://img.shields.io/npm/v/@ultirequiem/roman?logo=npm&color=cb3837)](https://www.npmjs.com/package/@ultirequiem/roman)
 [![npm downloads](https://img.shields.io/npm/dm/@ultirequiem/roman?color=cb3837)](https://www.npmjs.com/package/@ultirequiem/roman)
 [![CI](https://github.com/UltiRequiem/roman.js/actions/workflows/ci.yaml/badge.svg)](https://github.com/UltiRequiem/roman.js/actions/workflows/ci.yaml)
 [![codecov](https://codecov.io/gh/UltiRequiem/roman.js/graph/badge.svg)](https://codecov.io/gh/UltiRequiem/roman.js)
-
-Convert Numbers to Roman numerals.
 
 ## Install
 
