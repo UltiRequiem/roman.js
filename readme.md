@@ -1,6 +1,9 @@
 # Roman
 
-[![Code Coverage](https://codecov.io/gh/UltiRequiem/roman.js/branch/main/graph/badge.svg)](https://codecov.io/gh/UltiRequiem/roman.js)
+[![npm](https://img.shields.io/npm/v/@ultirequiem/roman?logo=npm&color=cb3837)](https://www.npmjs.com/package/@ultirequiem/roman)
+[![npm downloads](https://img.shields.io/npm/dm/@ultirequiem/roman?color=cb3837)](https://www.npmjs.com/package/@ultirequiem/roman)
+[![CI](https://github.com/UltiRequiem/roman.js/actions/workflows/ci.yaml/badge.svg)](https://github.com/UltiRequiem/roman.js/actions/workflows/ci.yaml)
+[![codecov](https://codecov.io/gh/UltiRequiem/roman.js/graph/badge.svg)](https://codecov.io/gh/UltiRequiem/roman.js)
 
 Convert Numbers to Roman numerals.
 
@@ -12,7 +15,7 @@ npm install @ultirequiem/roman
 
 ## Usage
 
-The API is the same on all this platforms ✔️
+The API is the same on all these platforms ✔️
 
 ### [Node.js 🐢🚀](https://npmjs.com/package/@ultirequiem/roman)
 
@@ -47,7 +50,7 @@ Types are included with the package.
 
 ## Support
 
-Open an Issue, I will check it a soon as possible 👀
+Open an Issue, I will check it as soon as possible 👀
 
 If you want to hurry me up a bit
 [send me a tweet](https://twitter.com/UltiRequiem) 😆
