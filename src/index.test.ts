@@ -32,6 +32,12 @@ describe("Convert to Roman Numeral from number.", () => {
     }).toThrow(RangeError);
   });
 
+  it("NaN and non-integers throw.", () => {
+    for (const n of [Number.NaN, 1.5, Infinity]) {
+      expect(() => roman(n)).toThrow(RangeError);
+    }
+  });
+
   it("Number greater than 3999 throws.", () => {
     expect(() => {
       roman(4000);
@@ -50,5 +56,31 @@ describe("Convert from number to Roman Numeral.", () => {
     expect(() => {
       parseRoman("XXXX");
     }).toThrow(SyntaxError);
+  });
+
+  it("Non-canonical or malformed input throws.", () => {
+    for (const input of [
+      "IIX",
+      "VX",
+      "IL",
+      "IVI",
+      "XCX",
+      "VV",
+      "CMCM",
+      "MCMXCIV ",
+      "ABC",
+      "iv",
+      "",
+    ]) {
+      expect(() => parseRoman(input), JSON.stringify(input)).toThrow(
+        SyntaxError,
+      );
+    }
+  });
+
+  it("Round-trips every number from 1 to 3999.", () => {
+    for (let n = 1; n <= 3999; n++) {
+      expect(parseRoman(roman(n))).toBe(n);
+    }
   });
 });

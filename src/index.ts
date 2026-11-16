@@ -70,7 +70,7 @@ for (let n = 1; n <= 3999; n++) {
 export function roman(number: number): string {
   assertNumberInRomanLimits(number);
 
-  return ROMAN_TABLE[number | 0] ?? "";
+  return ROMAN_TABLE[number]!;
 }
 
 /** Value of each Roman character, indexed by character code (0 if invalid). */
@@ -93,7 +93,6 @@ CHAR_VALUES[77] = 1000; // M
 export function parseRoman(romanNumeral: string): number {
   let result = 0;
   let previous = 0;
-  let run = 0;
 
   // Walk right to left: a smaller value before a bigger one is subtracted.
   for (let i = romanNumeral.length - 1; i >= 0; i--) {
@@ -104,16 +103,14 @@ export function parseRoman(romanNumeral: string): number {
       throw new SyntaxError("Roman numeral is invalid.");
     }
 
-    if (value === previous) {
-      if (++run > 3) {
-        throw new SyntaxError("Roman numeral is invalid.");
-      }
-    } else {
-      run = 1;
-    }
-
     result += value < previous ? -value : value;
     previous = value;
+  }
+
+  // Every number has exactly one canonical numeral, so anything that doesn't
+  // round-trip (IIX, VX, XXXX, CMCM, empty string...) is invalid.
+  if (ROMAN_TABLE[result] !== romanNumeral || result === 0) {
+    throw new SyntaxError("Roman numeral is invalid.");
   }
 
   return result;
@@ -126,9 +123,13 @@ export function parseRoman(romanNumeral: string): number {
  *
  * @throws {@link RangeError}
  *
- * Thrown if the number is greater than 3999 or less than 1.
+ * Thrown if the number is not an integer, is greater than 3999 or is less than 1.
  */
 export function assertNumberInRomanLimits(number: number): asserts number {
+  if (!Number.isInteger(number)) {
+    throw new RangeError("Only integers can be represented in Roman numerals.");
+  }
+
   if (number > 3999) {
     throw new RangeError(
       "The biggest number we can form in Roman numerals is MMMCMXCIX (3999).",
