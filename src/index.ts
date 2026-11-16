@@ -40,6 +40,26 @@ export const romanNumerals = [
   new RomanNumeral(1, "I"),
 ] as const;
 
+const ONES = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
+const TENS = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
+const HUNDREDS = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
+const THOUSANDS = ["", "M", "MM", "MMM"];
+
+/**
+ * Every Roman numeral from 1 to 3999, indexed by the number itself, so
+ * conversion is a single array lookup.
+ */
+const ROMAN_TABLE: string[] = [""];
+
+for (let n = 1; n <= 3999; n++) {
+  ROMAN_TABLE.push(
+    THOUSANDS[(n / 1000) | 0] +
+      HUNDREDS[((n / 100) | 0) % 10] +
+      TENS[((n / 10) | 0) % 10] +
+      ONES[n % 10],
+  );
+}
+
 /**
  * Convers a number to a Roman Numeral.
  *
@@ -50,17 +70,18 @@ export const romanNumerals = [
 export function roman(number: number): string {
   assertNumberInRomanLimits(number);
 
-  let result = "";
-
-  for (const { value, symbol } of romanNumerals) {
-    while (number >= value) {
-      result += symbol;
-      number -= value;
-    }
-  }
-
-  return result;
+  return ROMAN_TABLE[number]!;
 }
+
+/** Value of each Roman character, indexed by character code (0 if invalid). */
+const CHAR_VALUES = new Uint16Array(128);
+CHAR_VALUES[73] = 1; // I
+CHAR_VALUES[86] = 5; // V
+CHAR_VALUES[88] = 10; // X
+CHAR_VALUES[76] = 50; // L
+CHAR_VALUES[67] = 100; // C
+CHAR_VALUES[68] = 500; // D
+CHAR_VALUES[77] = 1000; // M
 
 /**
  * Convers a Roman Numeral to number.
@@ -71,20 +92,25 @@ export function roman(number: number): string {
  */
 export function parseRoman(romanNumeral: string): number {
   let result = 0;
+  let previous = 0;
 
-  for (const { value, symbol } of romanNumerals) {
-    let counter = 0;
+  // Walk right to left: a smaller value before a bigger one is subtracted.
+  for (let i = romanNumeral.length - 1; i >= 0; i--) {
+    const code = romanNumeral.charCodeAt(i);
+    const value = code < 128 ? CHAR_VALUES[code]! : 0;
 
-    while (romanNumeral.startsWith(symbol)) {
-      if (counter > 2) {
-        throw new SyntaxError("Roman numeral is invalid.");
-      }
-
-      romanNumeral = romanNumeral.slice(symbol.length);
-      result += value;
-
-      counter++;
+    if (value === 0) {
+      throw new SyntaxError("Roman numeral is invalid.");
     }
+
+    result += value < previous ? -value : value;
+    previous = value;
+  }
+
+  // Every number has exactly one canonical numeral, so anything that doesn't
+  // round-trip (IIX, VX, XXXX, CMCM, empty string...) is invalid.
+  if (ROMAN_TABLE[result] !== romanNumeral || result === 0) {
+    throw new SyntaxError("Roman numeral is invalid.");
   }
 
   return result;
@@ -97,9 +123,13 @@ export function parseRoman(romanNumeral: string): number {
  *
  * @throws {@link RangeError}
  *
- * Thrown if the number is greater than 3999 or less than 1.
+ * Thrown if the number is not an integer, is greater than 3999 or is less than 1.
  */
 export function assertNumberInRomanLimits(number: number): asserts number {
+  if (!Number.isInteger(number)) {
+    throw new RangeError("Only integers can be represented in Roman numerals.");
+  }
+
   if (number > 3999) {
     throw new RangeError(
       "The biggest number we can form in Roman numerals is MMMCMXCIX (3999).",
