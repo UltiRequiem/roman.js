@@ -69,6 +69,8 @@ describe("Convert from number to Roman Numeral.", () => {
       "CMCM",
       "MCMXCIV ",
       "ABC",
+      "Ⅻ",
+      "é",
       "iv",
       "",
     ]) {
