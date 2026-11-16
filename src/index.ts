@@ -40,6 +40,26 @@ export const romanNumerals = [
   new RomanNumeral(1, "I"),
 ] as const;
 
+const ONES = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
+const TENS = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
+const HUNDREDS = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
+const THOUSANDS = ["", "M", "MM", "MMM"];
+
+/**
+ * Every Roman numeral from 1 to 3999, indexed by the number itself, so
+ * conversion is a single array lookup.
+ */
+const ROMAN_TABLE: string[] = [""];
+
+for (let n = 1; n <= 3999; n++) {
+  ROMAN_TABLE.push(
+    THOUSANDS[(n / 1000) | 0] +
+      HUNDREDS[((n / 100) | 0) % 10] +
+      TENS[((n / 10) | 0) % 10] +
+      ONES[n % 10],
+  );
+}
+
 /**
  * Convers a number to a Roman Numeral.
  *
@@ -50,17 +70,18 @@ export const romanNumerals = [
 export function roman(number: number): string {
   assertNumberInRomanLimits(number);
 
-  let result = "";
-
-  for (const { value, symbol } of romanNumerals) {
-    while (number >= value) {
-      result += symbol;
-      number -= value;
-    }
-  }
-
-  return result;
+  return ROMAN_TABLE[number | 0] ?? "";
 }
+
+/** Value of each Roman character, indexed by character code (0 if invalid). */
+const CHAR_VALUES = new Uint16Array(128);
+CHAR_VALUES[73] = 1; // I
+CHAR_VALUES[86] = 5; // V
+CHAR_VALUES[88] = 10; // X
+CHAR_VALUES[76] = 50; // L
+CHAR_VALUES[67] = 100; // C
+CHAR_VALUES[68] = 500; // D
+CHAR_VALUES[77] = 1000; // M
 
 /**
  * Convers a Roman Numeral to number.
@@ -71,20 +92,28 @@ export function roman(number: number): string {
  */
 export function parseRoman(romanNumeral: string): number {
   let result = 0;
+  let previous = 0;
+  let run = 0;
 
-  for (const { value, symbol } of romanNumerals) {
-    let counter = 0;
+  // Walk right to left: a smaller value before a bigger one is subtracted.
+  for (let i = romanNumeral.length - 1; i >= 0; i--) {
+    const code = romanNumeral.charCodeAt(i);
+    const value = code < 128 ? CHAR_VALUES[code]! : 0;
 
-    while (romanNumeral.startsWith(symbol)) {
-      if (counter > 2) {
+    if (value === 0) {
+      throw new SyntaxError("Roman numeral is invalid.");
+    }
+
+    if (value === previous) {
+      if (++run > 3) {
         throw new SyntaxError("Roman numeral is invalid.");
       }
-
-      romanNumeral = romanNumeral.slice(symbol.length);
-      result += value;
-
-      counter++;
+    } else {
+      run = 1;
     }
+
+    result += value < previous ? -value : value;
+    previous = value;
   }
 
   return result;
